@@ -1,5 +1,6 @@
 import os
 import time
+from streamlit import st
 from google import genai
 from dotenv import load_dotenv
 
@@ -7,7 +8,7 @@ load_dotenv()
 
 def analyze_incident_with_ai(log_entry: dict, environment: str = "Production") -> str:
     """Envia o log de erro para a IA com tratamento de erros de indisponibilidade (503)."""
-    api_key = os.getenv("GEMINI_API_KEY")
+    api_key = os.getenv("GEMINI_API_KEY") or st.secrets.get("GEMINI_API_KEY")
     if not api_key:
         return "Chave de API não configurada no arquivo .env."
 

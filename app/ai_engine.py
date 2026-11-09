@@ -1,6 +1,6 @@
 import os
 import time
-from streamlit import st
+import streamlit as st 
 from google import genai
 from dotenv import load_dotenv
 

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: log-analyzer-deployment
+  labels:
+    app: log-analyzer
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: log-analyzer
+  template:
+    metadata:
+      labels:
+        app: log-analyzer
+    spec:
+      containers:
+      - name: log-analyzer-container
+        image: ai-log-analyzer:v1
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8000
+        env:
+        - name: GEMINI_API_KEY
+          value: "YOUR_GEMINI_API_KEY_HERE"
